@@ -39,7 +39,6 @@ def scrape_athlinks(event, context):
             print(f"Failed at iteration {i}: {e}")
             break
 
-    print(df_all.columns)
     df_all = df_all[df_all['status']=='CONF']
 
     upload_df_to_s3(

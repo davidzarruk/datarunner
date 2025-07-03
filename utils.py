@@ -12,6 +12,7 @@ from PIL import Image, ImageDraw
 import os
 import boto3
 from io import BytesIO
+import requests
 
 
 def get_data_athlinks(start, year, event, race, race_distance):
