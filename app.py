@@ -46,18 +46,27 @@ def scrape_athlinks(event, context):
         bucket_name="zarruk",
         key=f"datarunner/data/{event['race_name']}/datos_{event['year']}_{event['distance']}_.csv"
     )
+
+
+def scrape_results(event, context):
+
+    if event['source'] == 'athlinks':
+        scrape_athlinks(event, context)
+
+    elif event['source'] == 'sportsmaniacs':
+        scrape_sports_maniacs(event, context)
     
 
 if __name__ == "__main__":
 
-    #scrape_sports_maniacs({
+    #scrape_results({
     #    'race_id': '684e9e1a-9c7c-449e-83bd-4235ac1f1da3',
     #    'race_name': 'media_maraton_cordoba',
     #    'year': '2025',
     #    'distance': '21k'
     #}, {})
 
-    scrape_athlinks({
+    scrape_results({
         'event_id': 1112509,
         'race_id': 2602990,
         'race_distance': 21114,
