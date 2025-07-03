@@ -22,7 +22,7 @@ def scrape_sports_maniacs(event, context):
     upload_df_to_s3(
         df,
         bucket_name="zarruk",
-        key=f"datarunner/data/{event['race_name']}/datos_{event['year']}_{event['distance']}_.csv"
+        key=f"datarunner/data/{event['race_name']}/datos_{event['year']}_{event['distance']}.csv"
     )
 
 
@@ -44,7 +44,7 @@ def scrape_athlinks(event, context):
     upload_df_to_s3(
         df,
         bucket_name="zarruk",
-        key=f"datarunner/data/{event['race_name']}/datos_{event['year']}_{event['distance']}_.csv"
+        key=f"datarunner/data/{event['race_name']}/datos_{event['year']}_{event['distance']}.csv"
     )
 
 
