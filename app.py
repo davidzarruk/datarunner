@@ -39,6 +39,7 @@ def scrape_athlinks(event, context):
             print(f"Failed at iteration {i}: {e}")
             break
 
+    print(df_all.columns)
     df_all = df_all[df_all['status']=='CONF']
 
     upload_df_to_s3(
@@ -67,10 +68,10 @@ if __name__ == "__main__":
     #}, {})
 
     scrape_results({
-        'event_id': 1112509,
-        'race_id': 2602990,
-        'race_distance': 21114,
-        'year': 2025,
-        'race_name': 'media_maraton_cali',
-        'distance': '21k'
+        "event_id": 1112509,
+        "race_id": 2602990,
+        "race_distance": 21114,
+        "year": 2025,
+        "race_name": "media_maraton_cali",
+        "distance": "21k"
     }, {})
