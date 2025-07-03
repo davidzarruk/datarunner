@@ -31,6 +31,7 @@ def scrape_athlinks(event, context):
     i = 0
 
     while True:
+        print(len(df_all))
         try:
             df = get_data_athlinks(i * 50, event['year'], event['event_id'], event['race_id'], event['race_distance'])
             df_all = pd.concat([df_all, df])
@@ -42,7 +43,7 @@ def scrape_athlinks(event, context):
     df_all = df_all[df_all['status']=='CONF']
 
     upload_df_to_s3(
-        df,
+        df_all,
         bucket_name="zarruk",
         key=f"datarunner/data/{event['race_name']}/datos_{event['year']}_{event['distance']}.csv"
     )
@@ -67,10 +68,11 @@ if __name__ == "__main__":
     #}, {})
 
     scrape_results({
+        "source": "athlinks",
         "event_id": 1112509,
-        "race_id": 2602990,
-        "race_distance": 21114,
+        "race_id": 2602992,
+        "race_distance": 10000,
         "year": 2025,
         "race_name": "media_maraton_cali",
-        "distance": "21k"
+        "distance": "10k"
     }, {})
