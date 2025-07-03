@@ -49,7 +49,7 @@ def scrape_athlinks(event, context):
     )
 
     upload_df_to_s3(
-        df_all.value_counts('location.locality').reset_index(),
+        df_all[df_all['location.country']=='CO'].value_counts('location.locality').reset_index(),
         bucket_name="zarruk",
         key=f"datarunner/aux_data/locality_values/{event['race_name']}/datos_{event['year']}_{event['distance']}.csv"
     )
