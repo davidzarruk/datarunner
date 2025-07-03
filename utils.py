@@ -14,6 +14,26 @@ import boto3
 from io import BytesIO
 
 
+def get_data_athlinks(start, year, event, race, race_distance):
+    
+    url = f"https://reignite-api.athlinks.com/event/{event}/race/{race}/results?from={start}&limit=50"
+    
+    response = requests.get(url)
+
+    data = response.json()  # Parse JSON response
+
+    if data['intervals'][0]['distance']['meters']==race_distance:
+        # Extract the 'results' list
+        results = data['intervals'][0]['results']
+
+        # Normalize JSON into a DataFrame
+        df = pd.json_normalize(results)
+    else:
+        df = pd.DataFrame()
+        
+    return df
+
+
 def upload_df_to_s3(df, bucket_name, key):
     s3 = boto3.client('s3')
     buffer = BytesIO()
